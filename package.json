@@ -4,7 +4,7 @@
   "description": "Temperature Sensor made for Raspberry Pi, built for COMP264 at Loyola.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/ZacNeu/TempSense/issues"
   },
-  "homepage": "https://github.com/ZacNeu/TempSense#readme"
+  "homepage": "https://github.com/ZacNeu/TempSense#readme",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "express": "^4.17.1",
+    "pug": "^3.0.0"
+  }
 }

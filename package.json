@@ -1,0 +1,20 @@
+{
+  "name": "TempSense",
+  "version": "1.0.0",
+  "description": "Temperature Sensor made for Raspberry Pi, built for COMP264 at Loyola.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZacNeu/TempSense.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZacNeu/TempSense/issues"
+  },
+  "homepage": "https://github.com/ZacNeu/TempSense#readme"
+}

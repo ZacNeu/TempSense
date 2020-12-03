@@ -17,7 +17,11 @@ To setup the web server, you'll need to run `apt-get install node` and `apt-get 
 
 ### Usage
 
+#### Command Line
 Simply run `python3 main.py` to start the program.
+
+#### Web Server
+Run `npm start` to start up the web server. The site will be available at your Raspberry Pi's local IP address at the port specified in the console output.
 
 ## Resources
 

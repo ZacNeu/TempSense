@@ -3,6 +3,7 @@ html
     link(rel="stylesheet", href="index.css", type="text/css")
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.svg" />
     title TempSense – A COMP 264 Project
   body
     div.container
@@ -13,6 +14,8 @@ html
         p Last updated at
         h2 #{timestamp}
       div.c
-        h1 #{c}°C
+        p The external temperature is
+        h1 #{api_c}°C or #{api_f}°F
       div.f
-        h1 #{f}°F
+        p The internal temperature is
+        h1 #{c}°C or #{f}°F

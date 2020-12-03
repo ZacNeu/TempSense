@@ -20,14 +20,24 @@ router.get("/", (req, res) => {
   // read contents of the file
   const data = fs.readFileSync('temperature.txt', 'UTF-8');
 
-  // split the contents by new line
-  const lines = data.split(/\r?\n/);
+  let c = 0;
+  let f = 0;
+  let timestamp = "Error fetching temperature data."
 
-  const c = parseInt(lines[0]);
-  const f = c * 1.8 + 32
-  const timestamp = lines[1];
-  
-  res.render("index", { c, f, timestamp });
+    // split the contents by new line
+    const lines = data.split(/\r?\n/);
+
+    if (lines.length === 3) {
+      c = parseInt(lines[0]);
+      f = c * 1.8 + 32
+      timestamp = lines[1];
+    }
+
+  // TODO: Add temperature data from API
+  const api_c = 0;
+  const api_f = 0;
+
+  res.render("index", { api_c, api_f, c, f, timestamp });
 });
 
 const PORT = process.env.port || 3000;

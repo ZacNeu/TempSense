@@ -13,7 +13,7 @@ To start, install the necessary libraries referenced in this video: https://yout
 
 Then, clone this repository locally. You'll need to change the address in `update_temperature.sh` to match the address of your temperature sensor.
 
-To setup the web server, you'll need to run `apt-get install node` and `apt-get install npm`. Then, run `npm i` (or `npm install`) to install the necessary packages.
+To setup the web server, you'll need to run `apt-get install nodejs` and `apt-get install npm`. Then, run `npm i` (or `npm install`) to install the necessary packages.
 
 ### Usage
 

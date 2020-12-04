@@ -1,6 +1,3 @@
-import json
-import requests
-
 // Load the http module to create an http server.
 const express = require("express");
 const app = express();
@@ -9,11 +6,10 @@ const router = express.Router();
 const fs = require('fs')
 const CronJob = require('cron').CronJob;
 const exec = require('child_process').exec;
+const fetch = require('node-fetch')
 
 // A key and API to get the current temperature of Chicago
-key = '3010a4137160bda6d8b4750c2731ec2d'
-url = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Chicago&appid='+key)
-weather = json.loads(url.text)
+const key = '3010a4137160bda6d8b4750c2731ec2d'
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -24,7 +20,7 @@ const job = new CronJob('* * * * * *', () => {
 }, null, true, 'America/New_York')
 job.start();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   // read contents of the file
   const data = fs.readFileSync('temperature.txt', 'UTF-8');
 
@@ -32,18 +28,20 @@ router.get("/", (req, res) => {
   let f = 0;
   let timestamp = "Error fetching temperature data."
 
-    // split the contents by new line
-    const lines = data.split(/\r?\n/);
+  // split the contents by new line
+  const lines = data.split(/\r?\n/);
 
-    if (lines.length === 3) {
-      c = parseInt(lines[0]);
-      f = c * 1.8 + 32
-      timestamp = lines[1];
-    }
+  if (lines.length === 3) {
+    c = parseInt(lines[0]);
+    f = c * 1.8 + 32
+    timestamp = lines[1];
+  }
 
   // TODO: Add temperature data from API
-  const api_c = 0;
-  const api_f = weather['main']['temp'],"Temperature";
+  const weatherRes = await fetch('http://api.openweathermap.org/data/2.5/weather?q=Chicago&appid='+key)
+  const weather = await weatherRes.json() 
+  const api_c = Math.round((weather.main.temp - 273.15) * 10) / 10;
+  const api_f = Math.round((api_c * 1.8 + 32) * 10) / 10;
 
   res.render("index", { api_c, api_f, c, f, timestamp });
 });

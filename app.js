@@ -1,3 +1,6 @@
+import json
+import requests
+
 // Load the http module to create an http server.
 const express = require("express");
 const app = express();
@@ -6,6 +9,11 @@ const router = express.Router();
 const fs = require('fs')
 const CronJob = require('cron').CronJob;
 const exec = require('child_process').exec;
+
+// A key and API to get the current temperature of Chicago
+key = '3010a4137160bda6d8b4750c2731ec2d'
+url = requests.get('http://api.openweathermap.org/data/2.5/weather?q=Chicago&appid='+key)
+weather = json.loads(url.text)
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
@@ -35,7 +43,7 @@ router.get("/", (req, res) => {
 
   // TODO: Add temperature data from API
   const api_c = 0;
-  const api_f = 0;
+  const api_f = weather['main']['temp'],"Temperature";
 
   res.render("index", { api_c, api_f, c, f, timestamp });
 });

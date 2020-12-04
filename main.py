@@ -11,7 +11,7 @@ while True:
     file.close()
 
     celsius = int(hex, 16)
-    fahrenheit = celsius * 0.8 + 32
+    fahrenheit = celsius * 1.8 + 32
     print(timestamp + ": " + str(celsius) + "°C or", str(fahrenheit) + '°F')
 
     time.sleep(1)
